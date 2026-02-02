@@ -5,7 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APEX GARAGE</title>
-    <link rel="stylesheet" href="style.css"> <!-- Corrigido: aponta para style.css na raiz -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css"> <!-- Corrigido: aponta para style.css na raiz --> 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
+<!-- Add the slick-theme.css if you want default styling -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
+
 </head>
 <!-- ...existing code... -->
 
@@ -25,7 +32,7 @@
     </header>
     <section>
         <div class="list">
-            <div class="item">
+            <div class="item active">
                 <div class="car-img">
                     <img src="./img/ferrari.png" alt="carro1">
                 </div>
@@ -40,12 +47,43 @@
                     </div>
                 </div>
             </div>
+            <div class="item">
+                <div class="car-img">
+                    <img src="./img/porsche.png" alt="carro2">
+                </div>
+                <div class="content">
+                    <div class="car-information">
+                        <h2>Porsche</h2>
+                        <p class="description">O Porsche 911 Turbo (geração 992/992.2) é um supercarro de alto
+                            desempenho
+                            que equilibra perfeitamente uso diário e performance de pista.</p>
+                        <button class="information">Saiba Mais</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="car-img">
+                    <img src="./img/lamborghini.png"
+                        alt="Yellow Lamborghini Huracán supercar photographed from the side view, showcasing its aggressive aerodynamic design and distinctive angular bodywork against a white background">
+                </div>
+                <div class="content">
+                    <div class="car-information">
+                        <h2>Lamborghini</h2>
+                        <p class="description">A Lamborghini Huracán é um superesportivo icônico, conhecido pelo seu
+                            design agressivo e aerodinâmico,
+                            equipado com um motor V10 aspirado de alta performance</p>
+                        <button class="information">Saiba Mais</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <div class="indicators">
-            <div class="number">1</div>
+            <div class="number"></div>
             <ul>
-                <li><span></span></li>
+                <li><span class="active"></span></li>
                 <li><span></span></li>
                 <li><span></span></li>
             </ul>
@@ -53,15 +91,17 @@
 
         <div class="arrows">
             <button class="arrow-left">
-                <img src="img/arrow-left.png" alt="Seta para cima" onerror="this.style.display='none';">
+                <i class="fa-solid fa-chevron-left"></i>
             </button>
             <button class="arrow-right">
-                <img src="img/arrow-right.png" alt="Seta para baixo" onerror="this.style.display='none';">
+                <i class="fa-solid fa-chevron-right"></i>
             </button>
         </div>
     </section>
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
     <!-- Removido script.js para evitar erro 404; adicione apenas se existir -->
 </body>
+
 
 </html>
