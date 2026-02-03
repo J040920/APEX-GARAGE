@@ -8,82 +8,190 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css"> <!-- Corrigido: aponta para style.css na raiz --> 
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
-<!-- Add the slick-theme.css if you want default styling -->
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
+    <link rel="stylesheet" href="style.css"> <!-- Corrigido: aponta para style.css na raiz -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css" />
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css" />
 
 </head>
-<!-- ...existing code... -->
 
 <body>
-    <!-- filepath: c:\Users\joaop\OneDrive\projetos\pagina web\index.html -->
-    <!-- ...existing code... -->
-    <!-- ...existing code... -->
+    <!-- Preloader -->
+    <div class="preloader">
+        <img src="./img/minha-logo.png" alt="Apex Garage Loading...">
+    </div>
+
     <header>
-        <img src="./img/minha-logo.png" alt="Minha Logo"> <!-- Substitua por sua logo -->
+        <img src="./img/minha-logo.png" alt="Logo da Apex Garage">
         <nav>
             <ul>
-                <li>home</li>
-                <li>carros</li>
-                <li>fale conosco</li>
+                <li><button id="btn-home">home</button></li>
+                <li><button id="btn-cars">carros</button></li>
+                <li><button id="btn-contact">fale conosco</button></li>
             </ul>
         </nav>
     </header>
     <section>
+        <!-- Detalhes de Fundo e Laterais -->
+        <div id="particles-js"></div>
+        <div class="bg-text">APEX</div>
+        <div class="social-media">
+            <a href="https://www.instagram.com/seu_usuario" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/sua_pagina" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://api.whatsapp.com/send?phone=55619961441779" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+
         <div class="list">
-            <div class="item active">
+            <div class="item active" data-marca="Ferrari" data-modelo="Portofino M" data-motor="3.9 V8 Biturbo"
+                data-potencia="620 cv" data-torque="77,5 kgfm" data-zero-to-hundred="3.1s"
+                data-img="./img/ferrari.png">
                 <div class="car-img">
-                    <img src="./img/ferrari.png" alt="carro1">
+                    <img src="./img/ferrari.png" alt="Ferrari Portofino M vermelha">
+                </div>
+                <div class="brand-logo">
+                    <img src="./img/logo-ferrari.png" alt="Logo Ferrari">
                 </div>
                 <div class="content">
                     <div class="car-information">
                         <h2>Ferrari</h2>
                         <p class="description">A Ferrari Portofino M 2023 está equipada com um motor 3.9 V8 de 620 cv e
                             77,5 kgfm, combinado com um câmbio automatizado de oito marchas e dupla embreagem e a tração
-                            traseira. A carroceria tem 4594 mm de comprimento, 1938 mm de largura, 1318 mm de altura e
-                            2670 mm de entre-eixos.</p>
+                            traseira.</p>
                         <button class="information">Saiba Mais</button>
                     </div>
                 </div>
             </div>
-            <div class="item">
+            <div class="item" data-marca="Porsche" data-modelo="911 Turbo" data-motor="3.7 Boxer 6-cil. Biturbo"
+                data-potencia="580 cv" data-torque="76,5 kgfm" data-zero-to-hundred="2.8s" data-img="./img/porsche.png">
                 <div class="car-img">
-                    <img src="./img/porsche.png" alt="carro2">
+                    <img src="./img/porsche.png" alt="Porsche 911 Turbo prata">
+                </div>
+                <div class="brand-logo">
+                    <img src="./img/logo-porsche.png" alt="Logo Porsche">
                 </div>
                 <div class="content">
                     <div class="car-information">
                         <h2>Porsche</h2>
                         <p class="description">O Porsche 911 Turbo (geração 992/992.2) é um supercarro de alto
-                            desempenho
-                            que equilibra perfeitamente uso diário e performance de pista.</p>
+                            desempenho que equilibra perfeitamente uso diário e performance de pista.</p>
                         <button class="information">Saiba Mais</button>
                     </div>
                 </div>
             </div>
-
-            <div class="item">
+            <div class="item" data-marca="Lamborghini" data-modelo="Aventador" data-motor="6.5 V12 Aspirado"
+                data-potencia="740 cv" data-torque="70,4 kgfm" data-zero-to-hundred="2.9s" data-img="./img/lamborghini.png">
                 <div class="car-img">
-                    <img src="./img/lamborghini.png"
-                        alt="Yellow Lamborghini Huracán supercar photographed from the side view, showcasing its aggressive aerodynamic design and distinctive angular bodywork against a white background">
+                    <img src="./img/lamborghini.png" alt="Lamborghini Huracán amarela">
+                </div>
+                <div class="brand-logo">
+                    <img src="./img/logo-lamborghini.png" alt="Logo Lamborghini">
                 </div>
                 <div class="content">
                     <div class="car-information">
                         <h2>Lamborghini</h2>
                         <p class="description">A Lamborghini Huracán é um superesportivo icônico, conhecido pelo seu
-                            design agressivo e aerodinâmico,
-                            equipado com um motor V10 aspirado de alta performance</p>
+                            design agressivo e aerodinâmico, equipado com um motor V10 aspirado de alta performance.</p>
                         <button class="information">Saiba Mais</button>
                     </div>
                 </div>
             </div>
-
+            <div class="item" data-marca="McLaren" data-modelo="720S" data-motor="4.0 V8 Biturbo" data-potencia="720 cv"
+                data-torque="78,5 kgfm" data-zero-to-hundred="2.9s" data-img="./img/mclaren.png">
+                <div class="car-img">
+                    <img src="./img/mclaren.png" alt="McLaren 720S laranja">
+                </div>
+                <div class="brand-logo">
+                    <img src="./img/logo-mclaren.png" alt="Logo McLaren">
+                </div>
+                <div class="content">
+                    <div class="car-information">
+                        <h2>McLaren</h2>
+                        <p class="description">O McLaren 720S é um supercarro britânico conhecido por sua aerodinâmica
+                            inovadora e desempenho visceral, impulsionado por um motor V8 biturbo.</p>
+                        <button class="information">Saiba Mais</button>
+                    </div>
+                </div>
+            </div>
+            <div class="item" data-marca="Bugatti" data-modelo="Chiron" data-motor="8.0 W16 Quad-Turbo"
+                data-potencia="1500 cv" data-torque="163,2 kgfm" data-zero-to-hundred="2.4s" data-img="./img/bugatti.png">
+                <div class="car-img">
+                    <img src="./img/bugatti.png" alt="Bugatti Chiron azul">
+                </div>
+                <div class="brand-logo">
+                    <img src="./img/logo-bugatti.png" alt="Logo Bugatti">
+                </div>
+                <div class="content">
+                    <div class="car-information">
+                        <h2>Bugatti</h2>
+                        <p class="description">O Bugatti Chiron representa o auge da engenharia automotiva, combinando
+                            luxo incomparável com uma potência que redefine os limites de velocidade.</p>
+                        <button class="information">Saiba Mais</button>
+                    </div>
+                </div>
+            </div>
+            <div class="item" data-marca="Koenigsegg" data-modelo="Jesko" data-motor="5.0 V8 Biturbo"
+                data-potencia="1600 cv (E85)" data-torque="152,9 kgfm" data-zero-to-hundred="2.5s" data-img="./img/jesko.png">
+                <div class="car-img">
+                    <img src="./img/jesko.png" alt="Koenigsegg Jesko">
+                </div>
+                <div class="brand-logo">
+                    <img src="./img/logo-koenigsegg.png" alt="Logo Koenigsegg">
+                </div>
+                <div class="content">
+                    <div class="car-information">
+                        <h2>Koenigsegg</h2>
+                        <p class="description">O Jesko é um megacarro focado em pista, com um motor V8 biturbo de 5.0
+                            litros produzindo 1280 cv com gasolina e 1600 cv com E85.</p>
+                        <button class="information">Saiba Mais</button>
+                    </div>
+                </div>
+            </div>
+            <div class="item" data-marca="Pagani" data-modelo="Huayra" data-motor="6.0 V12 Biturbo (AMG)"
+                data-potencia="730 cv" data-torque="102 kgfm" data-zero-to-hundred="3.2s" data-img="./img/pagani.png">
+                <div class="car-img">
+                    <img src="./img/pagani.png" alt="Pagani Huayra">
+                </div>
+                <div class="brand-logo">
+                    <img src="./img/logo-pagani.png" alt="Logo Pagani">
+                </div>
+                <div class="content">
+                    <div class="car-information">
+                        <h2>Pagani</h2>
+                        <p class="description">O Pagani Huayra combina arte e engenharia, equipado com um motor V12
+                            biturbo desenvolvido pela Mercedes-AMG e aerodinâmica ativa.</p>
+                        <button class="information">Saiba Mais</button>
+                    </div>
+                </div>
+            </div>
+            <div class="item" data-marca="Mercedes-AMG" data-modelo="One" data-motor="1.6 V6 Híbrido (F1)"
+                data-potencia="1063 cv" data-torque="N/A" data-zero-to-hundred="2.9s" data-img="./img/amgOne.png">
+                <div class="car-img">
+                    <img src="./img/amgOne.png" alt="Mercedes-amg One">
+                </div>
+                <div class="brand-logo">
+                    <img src="./img/logo-amg.png" alt="Logo amg">
+                </div>
+                <div class="content">
+                    <div class="car-information">
+                        <h2>amg One</h2>
+                        <p class="description">O Mercedes-AMG One traz a tecnologia híbrida da Fórmula 1 diretamente
+                            para as ruas, com mais de 1000 cavalos de potência.</p>
+                        <button class="information">Saiba Mais</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="indicators">
             <div class="number"></div>
             <ul>
                 <li><span class="active"></span></li>
+                <li><span></span></li>
+                <li><span></span></li>
+                <li><span></span></li>
+                <li><span></span></li>
+                <li><span></span></li>
                 <li><span></span></li>
                 <li><span></span></li>
             </ul>
@@ -97,10 +205,63 @@
                 <i class="fa-solid fa-chevron-right"></i>
             </button>
         </div>
+
+        <!-- Indicador de Scroll -->
+        <div class="scroll-down">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <div class="arrow-scroll">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </section>
 
+    <!-- Modal de Fale Conosco -->
+    <div class="modal-overlay" id="contact-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <h2>Fale Conosco</h2>
+            <form id="contact-form">
+                <input type="text" id="name" placeholder="Seu Nome" required>
+                <input type="email" id="email" placeholder="Seu Email" required>
+                <input type="tel" id="phone" placeholder="Seu Telefone">
+                <textarea id="message" rows="4" placeholder="Sua Mensagem" required></textarea>
+                <button type="submit">Enviar Mensagem</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Detalhes do Carro -->
+    <div class="modal-overlay" id="car-details-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-car-modal">&times;</span>
+            <div id="car-modal-content">
+                <!-- Conteúdo dos detalhes do carro será injetado aqui pelo JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery necessário para o Slick Carousel -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
-    <!-- Removido script.js para evitar erro 404; adicione apenas se existir -->
+
+    <div class="wrapper">
+        <h2>Galeria Exclusiva</h2>
+        <div class="carousel">
+            <!-- Adicione novos carros aqui -->
+            <div><img src="./img/jesko.png" alt="jesko"></div>
+            <div><img src="./img/pagani.png" alt="pagani"></div>
+            <div><img src="./img/amgOne.png" alt="amgOne"></div>
+            <div><img src="./img/svj.png" alt="svj"></div>
+
+        </div>
+    </div>
+    <script src="animation.js"></script>
+
 </body>
 
 

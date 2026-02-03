@@ -10,7 +10,7 @@ body {
     color: #ffffff;
     font-size: 18px;
     min-height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden; /* Permite rolar para baixo para ver a galeria */
     display: flex;
     flex-direction: column;
 }
@@ -25,19 +25,21 @@ header {
     align-items: center;
     grid-template-columns: 1fr 600px;
     gap: 10%;
-    background-color: rgb(69, 1, 205);
+    background-color: rgba(69, 1, 205, 0.5);
+    backdrop-filter: blur(10px);
     padding: 10px 0;
     z-index: 2;
+    border-radius: 20px;
 }
 
 header img {
-    width: 90px;
-    filter: hue-rotate(270deg);
+    width: 100px;
+    filter: invert(1); /* Alterado para tornar a logo visível */
 }
 
 nav ul {
     display: grid;
-    grid-template-columns: repeat(3, 200px);
+    grid-template-columns: repeat(3, 180px);
     text-transform: uppercase;
     font-weight: bold;
     font-size: 12px;
@@ -46,23 +48,72 @@ nav ul {
     color: #fff;
 }
 
+nav ul li button {
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav ul li button:hover {
+    background-color: #beff1b;
+    color: #000;
+    border-color: #beff1b;
+    box-shadow: 0 0 10px #beff1b;
+}
+
 section {
-    background-image: linear-gradient(to bottom, #6f02ea, #000000fe);
+    background: radial-gradient(circle at center, #5c00c4, #000000);
     height: 100vh;
     position: relative;
     padding-top: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden; /* Garante que o texto de fundo não vaze */
+}
+
+/* Padrão de Grade (Grid) no Fundo */
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+}
+
+/* Efeito de brilho de luz (Lens Flare) que segue o mouse */
+section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.08) 0%, transparent 25%);
+    pointer-events: none;
+    z-index: 3; /* Acima da grade e do texto de fundo, mas abaixo dos carros */
 }
 
 section .list {
-    width: 70vw;
+    width: 80vw;
     height: 100%;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1; /* Garante que os carros fiquem acima do texto de fundo */
 }
 
 section .list .item {
@@ -71,18 +122,31 @@ section .list .item {
     justify-content: space-between;
     width: 100%;
     height: 100%;
+    position: absolute; /* Faz os itens se sobreporem */
+    inset: 0;
+    opacity: 0; /* Esconde itens inativos */
+    transition: 0.5s;
 }
 
 section .list .item .car-img {
-    width: 50%;
+    width: 35%; /* Define a largura da área onde a imagem fica */
     display: flex;
     justify-content: center;
+    transform: translateX(60px);
 }
 
 section .list .item .car-img img {
-    width: 100%;
-    max-width: 500px;
-    transform: rotate(-30deg);
+    width: 150%;
+    max-width: 550px; /* Ajustado para o novo container */
+    transform: rotate(-40deg) translateX(-100px) scale(0.5);
+    transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: blur(5px) drop-shadow(0 20px 20px rgba(0, 0, 0, 0.5));
+}
+
+/* Estilo para o item ativo */
+section .list .item.active {
+    opacity: 1;
+    z-index: 1;
 }
 
 .item:first-child .car-img {
@@ -92,38 +156,43 @@ section .list .item .car-img img {
     /* Adicionado */
 }
 
-.arrows button {
-    width: 100px;
-}
-
-.list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.car-img img {
-    width: 200%;
-    height: auto;
-}
-
 section .list .content {
-    width: 40%;
+    width: 50%; /* Aumentado para acomodar textos longos */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
     gap: 20px;
+    transform: translateX(60px);
 }
 
 section .list .content .car-information {
     font-weight: bold;
-    text-align: right;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 section .list .content .car-information h2 {
-    font-size: 8em;
+    font-size: 6.5em; /* Reduzido para evitar quebra de layout em nomes longos */
     line-height: 1em;
+    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Ajuste específico para diminuir o título Lamborghini */
+section .list .item:nth-child(3) .content .car-information h2 {
+    font-size: 5em;
+}
+
+/* Ajuste específico para diminuir o título McLaren */
+section .list .item:nth-child(4) .content .car-information h2 {
+    font-size: 5.5em;
+}
+
+/* Ajuste específico para diminuir o título Koenigsegg */
+section .list .item:nth-child(6) .content .car-information h2 {
+    font-size: 5em;
 }
 
 section .list .content .car-information .description {
@@ -143,16 +212,13 @@ section .list .content .car-information .information {
     color: #000000;
     cursor: pointer;
     font-weight: bold;
+    transition: 0.3s;
 }
 
-&::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 200%;
-    border-top: 1px solid #ffffff;
+section .list .content .car-information .information:hover {
+    transform: scale(1.1);
+    background-color: #fff;
+    box-shadow: 0 0 20px #beff1b;
 }
 
 .indicators {
@@ -170,6 +236,27 @@ section .list .content .car-information .information {
 
 .indicators .number {
     font-size: 3em;
+    position: relative;
+}
+
+.indicators .number::before,
+.indicators .number::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    height: 4px;
+    background-color: #beff1b;
+    border-radius: 2px;
+}
+
+.indicators .number::before {
+    width: 50px;
+    bottom: -5px;
+}
+
+.indicators .number::after {
+    width: 25px;
+    bottom: -15px;
 }
 
 .indicators ul {
@@ -223,71 +310,375 @@ section .list .content .car-information .information {
     background-color: #beff1b;
 }
 
-section {
+/* Animação do carro quando ativo */
+section .list .item.active .car-img img {
+    transform: rotate(-20deg) translateX(0) scale(1);
+    filter: blur(0) drop-shadow(0 20px 20px rgba(0, 0, 0, 0.5));
+}
 
-    &.active {
-        .list {
-            .item {
-                transform: translateX(100vw);
-                transition: 0.5s;
-                opacity: 0;
+/* Estilo para a logo da marca no meio */
+section .list .item .brand-logo {
+    flex: 1; /* Ocupa o espaço restante no meio */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+    transition: transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transição para o parallax */
+}
 
-                .car-img {
-                    img {
-                        transform: rotate(0deg) scale(0.8);
-                        transition: 0.5s;
-                        transition-delay: 0.3s;
+section .list .item .brand-logo img {
+    width: 100px; /* Tamanho da logo */
+    opacity: 0;
+    transform: translateY(50px) scale(0.5);
+    transition: 1s;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+}
 
-                    }
-                }
+/* Animação de entrada do conteúdo */
+section .list .item.active .content .car-information {
+    animation: showContent 0.7s ease-in-out 1 forwards;
+}
 
-                .content {
-
-                    .car-information,
-                    .h2,
-                    .description,
-                    .information {
-                        transform: translateX(200px);
-                        transition: 0.7s;
-                        transition-delay: 0.3s;
-                        opacity: 1;
-                    }
-
-                    .h2 {
-                        transition-delay: 0.5s;
-                    }
-
-                    .description {
-                        transition-delay: 0.7s;
-                    }
-
-                    .information {
-                        transition-delay: 0.9s;
-                    }
-                }
-            }
-
-            .acttive {
-                transform: translateX(0);
-                transition: 0.5s;
-                opacity: 1;
-
-                .car-img {
-                    img {
-                        transform: rotate(-20deg);
-                    }
-                }
-
-                .content {
-
-                    .car-information,
-                    .h2,
-                    .description,
-                    .information {
-                        transform: translateX(0);
-                    }
-                }
-            }
-        }
+@keyframes showContent {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
     }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilos para o Slick Carousel (movidos para o escopo global) */
+.wrapper {
+    width: 100%;
+    padding: 50px 0;
+    text-align: center;
+    background: linear-gradient(to top, #050505, #1a0033); /* Gradiente escuro e elegante */
+    border-top: 1px solid rgba(190, 255, 27, 0.2); /* Linha sutil no topo */
+    box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.8); /* Sombra para separar da seção principal */
+    position: relative;
+    z-index: 10;
+}
+
+.wrapper h2 {
+    font-family: sans-serif;
+    color: #fff;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(190, 255, 27, 0.5); /* Brilho neon no título */
+}
+
+.carousel {
+    width: 90%;
+    margin: 0px auto;
+}
+
+.slick-slide {
+    margin: 0 20px;
+    transition: 0.3s;
+    opacity: 0.5;
+    transform: scale(0.8); /* Itens inativos ficam menores */
+}
+
+.slick-center {
+    opacity: 1;
+    transform: scale(1.1); /* Item central cresce */
+}
+
+.slick-slide img {
+    width: 100%;
+    border: 2px solid transparent;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: 0.3s;
+}
+
+.slick-center img {
+    border-color: #beff1b; /* Borda verde neon no item ativo */
+    box-shadow: 0 0 30px rgba(190, 255, 27, 0.2);
+}
+
+.wrapper .slick-dots li button:before {
+    font-size: 20px;
+    color: white;
+    opacity: 0.5;
+}
+
+.wrapper .slick-dots li.slick-active button:before {
+    color: #beff1b; /* Pontinhos verdes */
+    opacity: 1;
+}
+
+/* Estilos do Modal de Contato (Fale Conosco) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+    backdrop-filter: blur(5px);
+}
+
+.modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-content {
+    background-color: #1a1a1a;
+    padding: 40px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    border: 1px solid #7200d6;
+    box-shadow: 0 0 20px rgba(114, 0, 214, 0.3);
+}
+
+.modal-content h2 {
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-content input,
+.modal-content textarea {
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    outline: none;
+    font-family: sans-serif;
+}
+
+.modal-content button {
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: #beff1b;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.modal-content button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #beff1b;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Estilos dos Novos Detalhes */
+
+/* Texto Gigante de Fundo */
+.bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25vw; /* Tamanho gigante responsivo */
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.02); /* Quase transparente */
+    font-family: sans-serif;
+    pointer-events: none;
+    z-index: 0;
+    white-space: nowrap;
+}
+
+/* Barra Lateral de Redes Sociais */
+.social-media {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    z-index: 10;
+}
+
+.social-media a {
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.social-media a:hover {
+    background-color: #beff1b;
+    color: #000;
+    border-color: #beff1b;
+    box-shadow: 0 0 10px #beff1b;
+}
+
+/* Indicador de Scroll (Mouse) */
+.scroll-down {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 10;
+}
+
+.mouse {
+    width: 25px;
+    height: 45px;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.wheel {
+    width: 3px;
+    height: 8px;
+    background-color: #beff1b;
+    border-radius: 2px;
+    animation: scrollMouse 1.5s infinite;
+}
+
+@keyframes scrollMouse {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(15px); opacity: 0; }
+}
+
+.arrow-scroll span {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid #fff;
+    border-right: 2px solid #fff;
+    transform: rotate(45deg);
+    margin: -5px;
+    animation: scrollArrow 2s infinite;
+}
+
+.arrow-scroll span:nth-child(2) { animation-delay: -0.2s; }
+.arrow-scroll span:nth-child(3) { animation-delay: -0.4s; }
+
+@keyframes scrollArrow {
+    0% { opacity: 0; transform: rotate(45deg) translate(-5px, -5px); }
+    50% { opacity: 1; }
+    100% { opacity: 0; transform: rotate(45deg) translate(5px, 5px); }
+}
+
+/* Preloader Styles */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.preloader img {
+    width: 250px;
+    filter: invert(1);
+    animation: pulseLoader 1.5s infinite ease-in-out;
+}
+
+@keyframes pulseLoader {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+}
+
+/* Hide preloader when body has .loaded class */
+body.loaded .preloader {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Estilos para o Particles.js */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+/* Estilos para o Modal de Detalhes do Carro */
+#car-modal-content {
+    text-align: center;
+    color: #fff;
+}
+
+#car-modal-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #beff1b;
+}
+
+#car-modal-content h3 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #beff1b;
+    font-family: sans-serif;
+}
+
+.specs-table {
+    width: 100%;
+    margin-top: 20px;
+    text-align: left;
+    border-collapse: collapse;
+    font-family: sans-serif;
+}
+
+.specs-table td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.specs-table td:first-child {
+    font-weight: bold;
+    color: #b4b4b4;
+    width: 40%;
 }
