@@ -48,4 +48,4 @@ Este projeto foi desenvolvido para fins de estudo e portfólio.
 
 ---
 
-Desenvolvido com 💜 por [João Pedro C. Silva]
+Desenvolvido com 💜 por João Pedro C. Silva
